@@ -5,8 +5,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/main/login"); // Redirect to /main/login on page load
+    router.push("/main/login"); //Default Redirect On Page Load
   }, []);
 
-  return null; // Empty page since it redirects immediately
+  return null;
 }

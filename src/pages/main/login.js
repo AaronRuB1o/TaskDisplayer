@@ -6,20 +6,9 @@ export default function Login() {
   const router = useRouter();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState(null);
-  // useEffect(() => {
-  //   async function loadDetails() {
-  //     try {
-  //       let response = await fetch('/api/login');
-  //       // console.log(await response.json());
-  //     } catch (error) {
-  //       console.error("Error fetching details:", error);
-  //     }
-  //   }
-  //   loadDetails()
-  // }, []);
+  const [showError, setShowError] = useState(false);
 
   const authenticate = async () => {
-    console.log(username);
     const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -30,15 +19,27 @@ export default function Login() {
       }),
     });
   
+    if (!response.ok) {
+      return { message: 'Failed to create post' }
+    }
+
     const result = await response.json();
-    console.log(result);
-    router.push("/main/main_display");
+
+    if(result.authenticated){
+      router.push("/main/main_display");
+      setShowError(false);  
+    }
+    else{
+      setShowError(true);
+    }
+    
   };
 
   return (
     <div className="main">
-      <div className="title"> Login </div>
-      <div className="login">
+        <div className="title"> Login </div>
+        { showError &&(<div name="error">Login Failed!</div>)}
+        <div className="login">
       <table> 
         <tbody>
           <tr>
@@ -68,4 +69,5 @@ export default function Login() {
     </div>
   </div>
   );
+  Login.getLayout = (page) => page;
 }
