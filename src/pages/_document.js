@@ -4,10 +4,9 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Task Displayer</title> {/* ✅ This works */}
         <meta name="description" content="My Task Displayer App" />
       </Head>
-      <body>
+      <body>  
         <Main />
         <NextScript />
       </body>
