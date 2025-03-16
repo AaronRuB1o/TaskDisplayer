@@ -37,37 +37,38 @@ export default function Login() {
 
   return (
     <div className="main">
+      <div className="loginBox">
         <div className="title"> Login </div>
-        { showError &&(<div name="error">Login Failed!</div>)}
+        { showError &&(<div className="error">Login Failed!</div>)}
         <div className="login">
-      <table> 
-        <tbody>
-          <tr>
-            <td colSpan = "2">Please Enter your Credentials</td>
-          </tr>
-          <tr>
-            <td>Username:</td>
+        <table> 
+          <tbody>
+            <tr>
+              <td colSpan = "2">Please Enter your Credentials</td>
+            </tr>
+            <tr>
+              <td>Username:</td>
+              <td><input 
+                type="text"
+                onChange={(e) => setUserName(e.target.value)}>
+                </input>
+              </td>
+            </tr>
+            <tr>
+            <td>Password: </td>
             <td><input 
-              type="text"
-              onChange={(e) => setUserName(e.target.value)}>
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}>
               </input>
             </td>
-          </tr>
-          <tr>
-          <td>Password: </td>
-          <td><input 
-            type="text"
-            onChange={(e) => setPassword(e.target.value)}>
-            </input>
-          </td>
-          </tr>
-          <tr>
-            <td colSpan = "2"><Button text="Enter" onClick={authenticate} /></td> 
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+            <tr>
+              <td colSpan = "2"><Button text="Enter" onClick={authenticate} /></td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   );
-  Login.getLayout = (page) => page;
 }

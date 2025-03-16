@@ -1,17 +1,17 @@
-import NavBar from "../components/Navbar";  
-import Head from 'next/head'
+import { useRouter } from "next/router";
+import NavBar from "../components/Navbar";
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  const getLayout = Component.getLayout || ((page) => (
-    <>
-      <Head>
-        <title>Task Displayer</title>
-      </Head>
-      <NavBar />
-      {page}
-    </>
-  ));
+  const router = useRouter();
+  const hideNavbarRoutes = ["/main/login"]; // Hide Navbar on login page
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+  <div className="flex flex-col gap-10 w-screen">
+    {!hideNavbarRoutes.includes(router.pathname) && <NavBar />}
+    <main className="flex-1">
+      <Component {...pageProps} />
+    </main>
+  </div>
+  );
 }

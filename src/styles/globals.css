@@ -1,52 +1,152 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@component utilities;
 
-  --PX_8 : 8px;
-}
+@layer base {
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-blue-950 text-white font-sans flex justify-center items-center w-screen;
+  }
+  
+  div{
+    @apply box-border  text-xl;
+  }
+
+  table {
+    @apply bg-slate-600 border-separate border-spacing-2 border border-gray-500 
+    rounded-lg min-w-5xl mx-auto shadow-lg;
+  }
+
+  td {
+    @apply bg-slate-700 border border-gray-500 p-3 text-white rounded-md;
+  }
+
+  th {
+    @apply text-white text-xl font-bold p-4 text-center rounded-t-lg;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  select {
+    @apply w-full border border-gray-400 rounded-md px-4 py-2 bg-gray-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400;
   }
 }
 
-body {
-  background: var(--foreground);
-  color: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: var;
+@layer components {
+  .main{
+    @apply 
+    flex flex-col flex-wrap items-center text-center justify-center
+    w-full 
+    h-screen
+  }
+
+  .loginBox {
+    @apply bg-white border border-gray-300 rounded-xl shadow-2xl 
+           py-12 px-16 w-full h-auto min-w-[1150px] max-w-3xl 
+           flex flex-col space-y-6;
+  }
+  
+  .title {
+    @apply text-blue-950 font-bold text-3xl text-left py-4 w-full;
+  }
+
+  .error{
+    @apply text-red-500 font-bold text-lg text-left
+  }
+  
+  .btn {
+    @apply w-full h-14 text-lg font-semibold 
+           bg-blue-600 text-yellow-300 rounded-lg 
+           hover:bg-blue-700 transition-all
+           hover:text-white;
+  }
+
+.task-container {
+  @apply flex flex-col gap-4 w-full;
 }
 
-table{
-  border: 1px solid var(--background);
-  width: 500px;
+.task-table {
+  @apply bg-white border border-gray-300 rounded-lg shadow-md w-80/100 p-6 table-fixed;
 }
 
-td{
-  border: 1px solid var(--background);
-  padding: var(--PX_8);
+.task-header {
+  @apply bg-blue-600 text-white font-bold text-center py-2 rounded-t-md;
 }
 
-.main{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  justify-content: center;
-  height: 400px;
-  gap: 150px;
+.task-row {
+  @apply p-4 bg-white shadow-sm rounded-md flex text-center items-center mb-2;
 }
 
-/* .title{
-} */
+.task-row td{
+  @apply p-4 bg-white text-black border-none mb-2 w-1/4;
+}
 
-.login{
-  display: flex;
+.task-row td:nth-child(2) {
+  @apply text-left;
+}
+
+.task-actions {
+  @apply flex gap-3 w-50;
+}
+
+.task-actions td{
+  @apply flex gap-2 w-50 text-black border-none;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 flex items-center justify-center bg-black opacity-95 text-black;
+}
+
+.modal-box {
+  @apply bg-white p-6 rounded-lg shadow-lg w-1/3;
+}
+
+.modal-title {
+  @apply text-xl font-semibold mb-4;
+}
+
+.modal-input {
+  @apply w-full p-2 border rounded mb-2 bg-white;
+}
+
+.modal-buttons {
+  @apply flex justify-end gap-4 mt-5;
+}
+
+.navbar {
+  @apply sticky top-0 bg-blue-900 h-16 flex items-center px-4 w-full pl-12;
+}
+
+.mainTitle {
+  @apply text-white text-2xl font-bold;
+}
+
+.links {
+  @apply flex items-center gap-6 text-white ml-10;
+}
+
+.links li:hover {
+  @apply text-blue-300;
+}
+
+.add-task-form {
+  @apply bg-white shadow-md rounded-lg p-6 w-80/100 mx-auto;
+}
+
+.add-task-grid {
+  @apply grid gap-8 mb-10;
+}
+
+.add-task-label {
+  @apply block font-medium text-gray-700 mb-1;
+}
+
+.add-task-input {
+  @apply w-full border p-2 rounded-md text-black;
+}
 
 }
+
+
+
