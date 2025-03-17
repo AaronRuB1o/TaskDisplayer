@@ -90,10 +90,15 @@ export default function Main() {
         <div className="task-container">
           {statusCategories.map((status) => (
             <table key={status} className="task-table">
-              <thead>
-                <tr><td className="task-header">{status}</td></tr>
-              </thead>
               <tbody>
+              <tr colSpan="5"><td className="task-header w-full">{status}</td></tr>
+              <tr className="task-row-header">
+                <td className="">Title</td>
+                <td className="">Description</td>
+                <td className="">Priority</td>
+                <td className="">Due Date</td>
+                <td className="">Actions</td>
+              </tr>
               {data
                 .filter((task) => task.status === status)
                 .map((task) => (

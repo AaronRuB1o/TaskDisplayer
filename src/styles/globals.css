@@ -2,149 +2,168 @@
 
 @component utilities;
 
-@layer base {
+@theme {
+  --breakpoint-xxs: 20rem;
+}
 
+@layer base {
   body {
-    @apply bg-blue-950 text-white font-sans flex justify-center items-center w-screen;
+    @apply bg-blue-950 text-white font-sans flex justify-center items-center min-h-screen;
   }
-  
-  div{
-    @apply box-border  text-xl;
+
+  div {
+    @apply box-border text-sm md:text-xl;
   }
 
   table {
-    @apply bg-slate-600 border-separate border-spacing-2 border border-gray-500 
-    rounded-lg min-w-5xl mx-auto shadow-lg;
+    @apply w-full bg-slate-600 border-separate border-spacing-2 border border-gray-500 
+    rounded-lg mx-auto shadow-lg overflow-x-auto;
   }
 
   td {
-    @apply bg-slate-700 border border-gray-500 p-3 text-white rounded-md;
+    @apply bg-slate-700 border border-gray-500 p-3 text-white rounded-md text-left;
   }
 
   th {
-    @apply text-white text-xl font-bold p-4 text-center rounded-t-lg;
+    @apply bg-blue-700 text-white text-sm md:text-xl font-bold p-4 text-center rounded-t-lg;
   }
 
   input[type="text"],
   input[type="password"],
   input[type="date"],
-  select {
-    @apply w-full border border-gray-400 rounded-md px-4 py-2 bg-gray-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400;
+  select, textarea {
+    @apply w-full border border-gray-400 rounded-md px-4 py-2 bg-gray-300 text-slate-800 
+    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 font-light;
   }
 }
 
+
 @layer components {
-  .main{
-    @apply 
-    flex flex-col flex-wrap items-center text-center justify-center
-    w-full 
-    h-screen
+  .main {
+    @apply flex flex-col items-center justify-center w-full h-screen px-4;
   }
 
   .loginBox {
     @apply bg-white border border-gray-300 rounded-xl shadow-2xl 
-           py-12 px-16 w-full h-auto min-w-[1150px] max-w-3xl 
+           py-10 px-8 w-full md:min-w-[500px] max-w-3xl 
            flex flex-col space-y-6;
   }
-  
+
   .title {
-    @apply text-blue-950 font-bold text-3xl text-left py-4 w-full;
+    @apply text-blue-950 font-bold text-3xl text-left md:text-center py-4 w-full;
   }
 
-  .error{
-    @apply text-red-500 font-bold text-lg text-left
+  .error {
+    @apply text-red-500 font-bold text-sm md:text-lg text-left;
   }
-  
+
   .btn {
     @apply w-full h-14 text-lg font-semibold 
            bg-blue-600 text-yellow-300 rounded-lg 
-           hover:bg-blue-700 transition-all
-           hover:text-white;
+           hover:bg-blue-700 hover:text-white 
+           transition-colors duration-300 ease-in-out 
+           max-lg:h-10 max-lg:text-sm;
   }
 
-.task-container {
-  @apply flex flex-col gap-4 w-full;
-}
+  .task-container {
+    @apply flex flex-col gap-4 w-full sm:p-0 md:p-4 lg:p-6; 
+  }
 
-.task-table {
-  @apply bg-white border border-gray-300 rounded-lg shadow-md w-80/100 p-6 table-fixed;
-}
+  .task-table {
+    @apply bg-white border border-gray-300 rounded-lg shadow-md w-80/100 p-6 table-fixed sm:table md:table-fixed;
+  }
 
-.task-header {
-  @apply bg-blue-600 text-white font-bold text-center py-2 rounded-t-md;
-}
+  .task-header {
+    @apply bg-blue-900 text-white font-bold text-center rounded-t-md 
+    max-md:text-3xl;
+  }
 
-.task-row {
-  @apply p-4 bg-white shadow-sm rounded-md flex text-center items-center mb-2;
-}
+  .task-row-header {
+    @apply bg-blue-600 text-white font-extrabold text-center py-3 rounded-t-lg
+           flex items-center mb-3 shadow-md max-lg:hidden;
+  }
 
-.task-row td{
-  @apply p-4 bg-white text-black border-none mb-2 w-1/4;
-}
+  .task-row-header td {
+    @apply p-4 bg-blue-600 border-none mb-2 w-1/5 max-md:w-full max-md:p-2 text-center
+           font-medium uppercase tracking-wide;
+  }
 
-.task-row td:nth-child(2) {
-  @apply text-left;
-}
+  .task-row {
+    @apply p-4 bg-white shadow-sm rounded-md flex text-center items-center mb-2 
+    max-md:flex-col max-md:gap-4 max-md:text-2xl;
+  }
 
-.task-actions {
-  @apply flex gap-3 w-50;
-}
+  .task-row td{
+    @apply p-4 bg-white text-black border-none mb-2 w-1/4 text-center
+    max-md:w-full max-md:p-0;
+  }
 
-.task-actions td{
-  @apply flex gap-2 w-50 text-black border-none;
-}
+  .task-row td:nth-child(2) {
+    @apply text-left max-md:text-center;
+  }
 
-.modal-overlay {
-  @apply fixed inset-0 flex items-center justify-center bg-black opacity-95 text-black;
-}
+  .task-actions {
+    @apply flex gap-3 w-50;
+  }
 
-.modal-box {
-  @apply bg-white p-6 rounded-lg shadow-lg w-1/3;
-}
+  .task-actions td{
+    @apply flex gap-2 w-50 text-black border-none;
+  }
 
-.modal-title {
-  @apply text-xl font-semibold mb-4;
-}
+  .modal-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black opacity-95 text-black;
+  }
 
-.modal-input {
-  @apply w-full p-2 border rounded mb-2 bg-white;
-}
+  .modal-box {
+    @apply bg-white p-6 rounded-lg shadow-lg w-2/3 
+    max-lg:w-9/10 max-lg:h-8/10 max-lg:text-sm max-lg:mt-2 max-lg:flex max-lg:flex-col max-lg:items-center max-lg:justify-center;
+  }
 
-.modal-buttons {
-  @apply flex justify-end gap-4 mt-5;
-}
+  .modal-title {
+    @apply text-xl font-semibold mb-4 max-lg:text-base;
+  }
 
-.navbar {
-  @apply sticky top-0 bg-blue-900 h-16 flex items-center px-4 w-full pl-12;
-}
+  .modal-input {
+    @apply w-full p-2 border rounded mb-2 bg-white 
+    max-lg:text-sm max-lg:h-10;
+  }
 
-.mainTitle {
-  @apply text-white text-2xl font-bold;
-}
+  .modal-buttons {
+    @apply flex justify-end gap-4 mt-5 
+    max-lg:mt-0 max-lg:w-1/2;
+  }
 
-.links {
-  @apply flex items-center gap-6 text-white ml-10;
-}
+  .navbar {
+    @apply sticky top-0 bg-blue-900 h-16 flex items-center px-4 w-full pl-12;
+  }
 
-.links li:hover {
-  @apply text-blue-300;
-}
+  .mainTitle {
+    @apply text-white text-2xl font-bold;
+  }
 
-.add-task-form {
-  @apply bg-white shadow-md rounded-lg p-6 w-80/100 mx-auto;
-}
+  .links {
+    @apply flex items-center gap-6 text-white ml-10;
+  }
 
-.add-task-grid {
-  @apply grid gap-8 mb-10;
-}
+  .links li:hover {
+    @apply text-blue-300;
+  }
 
-.add-task-label {
-  @apply block font-medium text-gray-700 mb-1;
-}
+  .add-task-form {
+    @apply bg-white shadow-md rounded-lg p-6 w-80/100 mx-auto;
+  }
 
-.add-task-input {
-  @apply w-full border p-2 rounded-md text-black;
-}
+  .add-task-grid {
+    @apply grid gap-8 mb-10;
+  }
+
+  .add-task-label {
+    @apply block font-medium text-gray-700 mb-1;
+  }
+
+  .add-task-input {
+    @apply w-full border p-2 rounded-md text-black;
+  }
 
 }
 

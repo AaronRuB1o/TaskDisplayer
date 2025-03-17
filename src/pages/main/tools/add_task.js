@@ -1,4 +1,3 @@
-"use client"
 import { useState } from "react";
 import Button from "../../../components/button";
 import { useRouter } from "next/router";
@@ -54,6 +53,7 @@ export default function addTask() {
 
     return (
       <div className="add-task-form">
+        <div className="title"> Add Task </div>
         <div className="add-task-grid">
           <div>
             <label className="add-task-label">Title</label>
