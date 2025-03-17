@@ -7,7 +7,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Main() {
   const router = useRouter();
-  const { data, error } = useSWR('/api/task', fetcher);
+  const { data, error } = useSWR('/api/task', fetcher, {revalidateOnFocus: true}); //Can use refreshInterval: 10000;
   const statusCategories = ['To Do', 'In Progress', 'Completed'];
 
   const [editTask, setEditTask] = useState(null);
