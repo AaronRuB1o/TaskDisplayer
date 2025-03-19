@@ -3,7 +3,7 @@
 @component utilities;
 
 @theme {
-  --breakpoint-xxs: 20rem;
+  --breakpoint-xxs: 20rem; /* Variable */
 }
 
 @layer base {

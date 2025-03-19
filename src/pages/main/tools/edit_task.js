@@ -8,7 +8,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function addTask() {
     const router = useRouter();
     const { id } = router.query;
-    console
     const { data, error } = useSWR("/api/task", fetcher);
   
     const [taskData, setTaskData] = useState({});
